@@ -33,17 +33,24 @@ options{
     border-top-left-radius: 40%;
     border-top-right-radius: 40%;
 }
-.selected{
+.selectedCode {
+    background-color: aqua;
+
+}.selected{
     background-color: aqua;
 }
-.occupied{
+.occupiedCode {
+    background-color: darkblue;
+
+}.occupied{
     background-color: darkblue;
 }
-.audience{
+.container{
     display: flex;
     flex-direction: row;
     gap: 20px;
     cursor: pointer;
+    margin-top: 10px;
 }
 .row1{
     display: grid;

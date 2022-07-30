@@ -13,9 +13,10 @@
       <div class="selectMovie">
         <span>Select movie:</span>
         <select name="movies" id="movies">
-          <option value="Avengers">Avengers ($10)</option>
-          <option value="Avengers">Lion King ($20)</option>
-          <option value="Avengers">Last mile ($16)</option>
+          <option selected disabled>Select seat</option>
+          <option value="avengers">Avengers ($10)</option>
+          <option value="lionKing">Lion King ($20)</option>
+          <option value="uglyDolls">Ugly Dolls ($15)</option>
         </select>
       </div>
       <div class="colorCode">
@@ -24,19 +25,26 @@
           <small>Empty</small>
         </div>
         <div>
-          <div class="seat selected"></div>
+          <div class="seat selectedCode"></div>
           <small>Selected</small>
         </div>
         <div>
-          <div class="seat occupied"></div>
+          <div class="seat occupiedCode"></div>
           <small>Occupied</small>
         </div>
       </div>
       <div class="stage"></div>
-      <div class="audience">
+      <div class="container">
         <div class="row1"></div>
         <div class="row2"></div>
         <div class="row3"></div>
+      </div>
+      <div class="receipt">
+
+        <span id="totalCost">
+        </span>
+        <span id="seatCount"></span>
+        <span id="movieSelected">N/a</span>
       </div>
     </div>
     <script src="./scripts/main.js"></script>
