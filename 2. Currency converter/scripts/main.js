@@ -5,3 +5,33 @@ const changeFunction= ()=>{
     .then(data=>console.log(data))
 }
 changeFunction()
+/*const countryDetails= async function(){
+fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  //.then(data => console.log(data[0].currencies))
+  .then(data => data.map(country=>{
+    
+    
+    for (let x in country.currencies) {
+      console.log(x)
+      countryDetails.push(x)
+    }
+
+  }))
+}*/
+
+const  countryDetails= async function(){
+    const response = await fetch('https://restcountries.com/v3.1/all')
+    const data = response.json()
+    console.log(data)
+    data.map(country =>{
+      for (let x in country.currencies) {
+        console.log(x)
+        countryDetails.push(x)
+      }
+  
+    })
+    
+  }
+  
+    console.log(countryDetails())
