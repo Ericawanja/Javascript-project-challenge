@@ -1,5 +1,5 @@
-# Random Quote Generator
-This app provides three main fuctionalities.
+# 4. Random Quote Generator
+This app provides the following fuctionalities.
 
 1. Generate the quote by clicking New Quote button. 
 2. Convert the text to speech using web speech API
@@ -14,5 +14,6 @@ This app provides three main fuctionalities.
 
 ## Concepts learnt
 
-- API's using vanilla Javascript
+- API's Implementation
 - Dom manipulation 
+- Css Flexbox
