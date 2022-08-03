@@ -44,7 +44,7 @@ h3{
 .icons span{
     padding: 13px;
     color: rgb(28, 28, 254);
-    border: 1px solid rgb(28, 28, 254);
+    border: 1px solid rgb(186, 186, 209);
     border-radius: 50%;  
     cursor: pointer;
 }
@@ -66,4 +66,9 @@ button{
 .loading{
     opacity: 0.6;
     pointer-events: none ;
+}
+@media  screen and (max-width:450px) {
+    .container{
+        width: 80%;
+    }
 }
