@@ -8,15 +8,15 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-
+    overflow: hidden;
 }
 .clock{
-    width: 320px;
-    height: 320px;
+    width: 360px;
+    height: 360px;
     background-color: rgba(249, 251, 253, .8);
     border: 2px solid black;
     border-radius: 50%; 
-    position: relative;
+    position: relative; 
 }
 .clock .number{
     --rotation:0;
@@ -26,6 +26,7 @@ body{
     text-align: center;
     transform: rotate(var(--rotation));
     padding: 8px;
+    font-size: 1.5rem;
 }
 .clock .number1 { --rotation: 30deg;}
 .clock .number2 { --rotation: 60deg;}
@@ -53,17 +54,17 @@ body{
 }
 .second{
     width: 3px;
-    height: 45%;
+    height: 40%;
     background-color: rgb(254, 5, 5);
 }
 .minute{
     width: 5px;
-    height: 40%;
+    height: 35%;
     background-color: black;
 }
 .hour{
     width: 7px;
-    height: 35%;
+    height: 30%;
     background-color: black;
 }
 .clock::after{
