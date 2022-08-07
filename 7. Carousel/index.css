@@ -1,0 +1,25 @@
+.carousel{
+    max-width: 600px;
+    position: absolute;
+    
+}
+.carousel-item{
+    display: none;
+}
+.carousel-item-visible{
+    display: block;
+
+}
+.carousel-item img{
+    width: 100%;
+
+}
+button{
+    font-size: 30px;
+    font-weight: ;
+
+}
+.carousel-actions{
+    position: relative;
+    top: 3%;
+}
