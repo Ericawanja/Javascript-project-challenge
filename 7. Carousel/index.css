@@ -1,6 +1,5 @@
-/*.carousel{
-    max-width: 600px;
-    position: absolute;
+.carousel{
+    
     
 }
 .carousel-item{
@@ -19,7 +18,31 @@ button{
     font-weight: ;
 
 }
-.carousel-actions{
+.container{
+    max-width: 600px;
     position: relative;
-    top: 3%;
-}*/
+    margin: auto;
+}
+.carousel-actions{
+    transition: 0.6s ease
+}
+#carousel-button-prev{
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 2%;
+
+}
+#carousel-button-next{
+    left: 90%;
+    position: absolute;
+    top: 50%;
+}
+.text{
+    font-size: 1.4em;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    color: white;
+
+}
