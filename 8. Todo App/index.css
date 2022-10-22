@@ -26,12 +26,43 @@ body {
 }
 .task_wrapper {
   display: grid;
-  grid-template-columns: 10% 85%;
+  grid-template-columns: 15% 85%;
   justify-content: space-between;
 }
 .nav {
-  background-color: aqua;
+  background-color: rgb(210, 224, 224);
+  box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+
 }
+.nav .profile{
+  padding: 20px;
+}
+.nav .profile img{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+}
+
+.menu{
+  margin-top: 80px;
+  background: rgba(177, 187, 187, 0.4);
+  border-radius: 80px;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.exit{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
 .task_container {
   margin-top: 20px;
 }
