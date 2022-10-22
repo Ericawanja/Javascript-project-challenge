@@ -1,20 +1,18 @@
 const taskContainer = document.querySelector(".task_container");
 
-
 class MyApp {
   todos = [];
 
   async initializeApp() {
-    await this.fetchTodos();    
-
+    await this.fetchTodos();
   }
 
   fetchTodos = async () => {
     const result = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const todos = await result.json();
-    this.todos = todos;
+    const res = await result.json();
+    this.todos = res;
 
-    this.renderTodos()
+    this.renderTodos();
   };
 
   addTodo = async (data) => {
@@ -31,15 +29,17 @@ class MyApp {
     this.todos.unshift(todo);
   };
 
-
-  renderTodos(){
-    const todosMarkup = this.todos.map(todo=>`
+  renderTodos() {
+    const todosMarkup = this.todos
+      .map(
+        (todo) => `
     <div class="task">
     <span class="input"
       ><input
         type="checkbox"
         name="completed_status"
         id=${todo.id}
+        data-completed-status=${todo.completed}
         class="checkbox"
     /></span>
     <span class="title" id=${todo.id}>${todo.title}</span>
@@ -59,10 +59,22 @@ class MyApp {
     </span>
   </div>
     
-    `).join('')
+    `
+      )
+      .join("");
 
     taskContainer.innerHTML = todosMarkup;
-    
+    this.checkCompleted();
+  }
+
+  checkCompleted() {
+    const checkboxes = document.getElementsByClassName("checkbox");
+    console.log();
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (checkboxes[i].getAttribute("data-completed-status") != "false") {
+        checkboxes[i].checked = true;
+      }
+    }
   }
 }
 
