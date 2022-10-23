@@ -8,32 +8,32 @@ class MyApp {
   }
 
   fetchTodos = async () => {
+    try{
     const result = await fetch("https://jsonplaceholder.typicode.com/todos");
     const res = await result.json();
+    
     this.todos = res;
+   
 
-    this.renderTodos();
+    localStorage.setItem('stored_todos', JSON.stringify(res));  
+    
+
+    this.renderTodos(res);
+    }catch{
+      this.renderTodos(localStorage.getItem('stored_todos'))
+
+    }
+
   };
 
-  addTodo = async (data) => {
-    const result = await fetch("https://jsonplaceholder.typicode.com/todos", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+  
 
-    const todo = await result.json();
-
-    this.todos.unshift(todo);
-  };
-
-  renderTodos() {
-    const todosMarkup = this.todos
+  renderTodos = ( data_todos) =>{
+   
+    const todosMarkup = data_todos
       .map(
         (todo) => `
-    <div class="task">
+    <div class="task  " id=${todo.completed} >
     <span class="input"
       ><input
         type="checkbox"
@@ -64,8 +64,27 @@ class MyApp {
       .join("");
 
     taskContainer.innerHTML = todosMarkup;
+
     this.checkCompleted();
+    this.addingEventListeners();
   }
+
+  addTodo = async (data) => {
+    const result = await fetch("https://jsonplaceholder.typicode.com/todos", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+
+    const todo = await result.json();
+
+    this.todos.unshift(todo);
+    localStorage.setItem('stored_todos', JSON.stringify(this.todos.unshift)); 
+    this.renderTodos(this.todos)
+    this.close_open_Form()
+  };
 
   checkCompleted() {
     const checkboxes = document.getElementsByClassName("checkbox");
@@ -76,9 +95,68 @@ class MyApp {
       }
     }
   }
+  create = ()=> {
+    let title_input = document.querySelector(".title_input").value;
+    const id = Math.ceil(Math.random() * 100000000);
 
+    const created_todo = {
+      id,
+      user: 21,
+      title: title_input,
+      completed: "false",
+    };
+
+    this.addTodo(created_todo)
+  }
+
+
+completedTasks = ()=>{
+  let data = JSON.parse( localStorage.getItem('stored_todos'))
+  const done_tasks = data.filter(item => item.completed === true)
+  this.renderTodos(done_tasks)
+  console.log(this.todos)
+
+}
+uncompletedTasks=()=>{
+  let data = JSON.parse( localStorage.getItem('stored_todos'))
+  const done_tasks = data.filter(item => item.completed === false)
+  this.renderTodos(done_tasks)
+
+}
+delete =()=>{
+  let data = JSON.parse( localStorage.getItem('stored_todos'))
+  const remTasks = data.filter(item.id != id)
   
+}
+
+
+  //close Form
+  close_open_Form=()=> {
+    let form = document.querySelector(".form");
+
+    if (form.style.display === "block") {
+      form.style.display = "none";
+    } else {
+      form.style.display = "block";
+    }
+  }
+
+  addingEventListeners=()=> {
+    let createbtn = document.querySelector(".create");
+    let cancel_form = document.querySelector(".cancel");
+    let submit_btn = document.querySelector(".submit");
+    let uncompleted_btn = document.querySelector(".uncompleted")
+    let productivity_btn = document.querySelector("productivity")
+    
+    createbtn.addEventListener("click", this.close_open_Form);
+    cancel_form.addEventListener("click", this.close_open_Form);
+    submit_btn.addEventListener("click", this.create);
+    uncompleted_btn.addEventListener("click", this.uncompletedTasks)
+  }
 }
 
 const app = new MyApp();
 app.initializeApp();
+
+let completed_btn = document.querySelector(".completed")
+completed_btn.addEventListener("click", app.completedTasks)

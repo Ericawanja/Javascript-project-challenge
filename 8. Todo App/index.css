@@ -22,7 +22,7 @@ body {
   width: 100%;
   height: 300px;
   margin: auto;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 .task_wrapper {
   display: grid;
@@ -86,19 +86,25 @@ body {
 .task .title{
     text-transform: capitalize;
 }
+#true .input{
+  opacity: 0.2;
+}
 .task_container_Form{
   position: relative;
 
 }
+#true .title{
+  opacity: 0.2;
+}
 .form{
   position: absolute;
-  top: 50%;
+  top: 2%;
   right: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(16, 3, 53);
   padding: 10px;
-  display: none;
+  display:none ;
   
 }
 label{
@@ -109,6 +115,7 @@ label{
   outline: none;
   font-size: 1.2rem;
 }
+
 .btns{
   display: flex;
   gap: 10px;

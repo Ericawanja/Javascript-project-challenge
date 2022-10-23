@@ -26,20 +26,90 @@
                   width="30"
                   height="30"
                   viewBox="0 0 24 24"
-                  style="fill: rgb(19, 15, 36); transform: ; msfilter: "
+                  style="fill: rgb(1, 2, 17); transform: ; msfilter: "
                 >
                   <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
                 </svg>
               </div>
 
-              <div>to be done</div>
-              <div>completed</div>
+              <div class="uncompleted">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  style="fill: rgb(1, 2, 17); transform: ; msfilter: "
+                >
+                  <path
+                    d="M3 20c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15zM5 5h2v2h10V5h2v15H5V5z"
+                  ></path>
+                  <path
+                    d="M14.292 10.295 12 12.587l-2.292-2.292-1.414 1.414 2.292 2.292-2.292 2.292 1.414 1.414L12 15.415l2.292 2.292 1.414-1.414-2.292-2.292 2.292-2.292z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="completed">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  style="fill: rgb(1, 2, 17); transform: ; msfilter: "
+                >
+                  <path
+                    d="M5 22h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1H5c-1.103 0-2 .897-2 2v15c0 1.103.897 2 2 2zM5 5h2v2h10V5h2v15H5V5z"
+                  ></path>
+                  <path
+                    d="m11 13.586-1.793-1.793-1.414 1.414L11 16.414l5.207-5.207-1.414-1.414z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="productivity">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  viewBox="0 0 24 24"
+                  style="fill: rgb(1, 2, 17); transform: ; msfilter: "
+                >
+                  <path d="M3 3v17a1 1 0 0 0 1 1h17v-2H5V3H3z"></path>
+                  <path
+                    d="M15.293 14.707a.999.999 0 0 0 1.414 0l5-5-1.414-1.414L16 12.586l-2.293-2.293a.999.999 0 0 0-1.414 0l-5 5 1.414 1.414L13 12.414l2.293 2.293z"
+                  ></path>
+                </svg>
+              </div>
             </div>
+
             <div class="exit">
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" style="fill: rgb(9, 5, 27);transform: ;msFilter:;"><path d="M5.002 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-14c-1.103 0-2 .897-2 2v6.001H10V7l6 5-6 5v-3.999H3.002V19c0 1.103.897 2 2 2z"></path></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                style="fill: rgb(1, 2, 17); transform: ; msfilter: "
+              >
+                <path
+                  d="M5.002 21h14c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2h-14c-1.103 0-2 .897-2 2v6.001H10V7l6 5-6 5v-3.999H3.002V19c0 1.103.897 2 2 2z"
+                ></path>
+              </svg>
             </div>
           </div>
-          <div class="task_container"></div>
+          <div class="task_container_Form">
+            <div class="task_container"></div>
+            <div class="form">
+              <label for="title_input">Enter the title</label><br /><br />
+              <input
+                type="text"
+                name="title"
+                id="title_input"
+                class="title_input"
+              /><br /><br />
+              <div class="btns">
+                <button type="button" class="cancel">Cancel</button>
+                <button type="button" class="submit">Save</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
