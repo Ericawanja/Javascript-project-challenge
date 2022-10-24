@@ -124,3 +124,29 @@ label{
 .cancel, .submit{
   padding: 7px;
 }
+@media  screen and (max-width:950px) {
+  .container{
+    width: 80%;
+  
+  }
+}
+@media  screen and (max-width:650px) {
+  .container{
+    width: 95%;
+
+  }
+  
+  .nav .profile{
+    padding: 20px 5px;
+  }
+}
+@media  screen and (max-width:450px) {
+  .container{
+    width: 99%;
+  
+  }
+  .hero_image img{
+    height: 150px;
+  }
+  
+}

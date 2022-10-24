@@ -4,32 +4,28 @@ class MyApp {
   todos = [];
 
   async initializeApp() {
-    await this.fetchTodos();
+    let stored_data = JSON.parse(localStorage.getItem("stored_todos"));
+    if (stored_data) {
+      this.renderTodos(stored_data);
+    } else {
+      await this.fetchTodos();
+    }
   }
 
   fetchTodos = async () => {
-    try{
-    const result = await fetch("https://jsonplaceholder.typicode.com/todos");
-    const res = await result.json();
-    
-    this.todos = res;
-   
+    try {
+      const result = await fetch("https://jsonplaceholder.typicode.com/todos");
+      const res = await result.json();
 
-    localStorage.setItem('stored_todos', JSON.stringify(res));  
-    
+      this.todos = res;
 
-    this.renderTodos(res);
-    }catch{
-      this.renderTodos(localStorage.getItem('stored_todos'))
+      localStorage.setItem("stored_todos", JSON.stringify(res));
 
-    }
-
+      this.renderTodos(res);
+    } catch {}
   };
 
-  
-
-  renderTodos = ( data_todos) =>{
-   
+  renderTodos = (data_todos) => {
     const todosMarkup = data_todos
       .map(
         (todo) => `
@@ -43,9 +39,9 @@ class MyApp {
         class="checkbox"
     /></span>
     <span class="title" id=${todo.id}>${todo.title}</span>
-    <span class="delete">
+    <span class="delete" id=${todo.id}>
       <svg
-        data-id="${todo.id}"
+        
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
@@ -66,8 +62,9 @@ class MyApp {
     taskContainer.innerHTML = todosMarkup;
 
     this.checkCompleted();
+
     this.addingEventListeners();
-  }
+  };
 
   addTodo = async (data) => {
     const result = await fetch("https://jsonplaceholder.typicode.com/todos", {
@@ -81,9 +78,9 @@ class MyApp {
     const todo = await result.json();
 
     this.todos.unshift(todo);
-    localStorage.setItem('stored_todos', JSON.stringify(this.todos.unshift)); 
-    this.renderTodos(this.todos)
-    this.close_open_Form()
+    localStorage.setItem("stored_todos", JSON.stringify(this.todos.unshift));
+    this.renderTodos(this.todos);
+    this.close_open_Form();
   };
 
   checkCompleted() {
@@ -95,7 +92,7 @@ class MyApp {
       }
     }
   }
-  create = ()=> {
+  create = () => {
     let title_input = document.querySelector(".title_input").value;
     const id = Math.ceil(Math.random() * 100000000);
 
@@ -106,32 +103,27 @@ class MyApp {
       completed: "false",
     };
 
-    this.addTodo(created_todo)
-  }
+    this.addTodo(created_todo);
+  };
 
-
-completedTasks = ()=>{
-  let data = JSON.parse( localStorage.getItem('stored_todos'))
-  const done_tasks = data.filter(item => item.completed === true)
-  this.renderTodos(done_tasks)
-  console.log(this.todos)
-
-}
-uncompletedTasks=()=>{
-  let data = JSON.parse( localStorage.getItem('stored_todos'))
-  const done_tasks = data.filter(item => item.completed === false)
-  this.renderTodos(done_tasks)
-
-}
-delete =()=>{
-  let data = JSON.parse( localStorage.getItem('stored_todos'))
-  const remTasks = data.filter(item.id != id)
-  
-}
-
+  completedTasks = () => {
+    let data = JSON.parse(localStorage.getItem("stored_todos"));
+    const done_tasks = data.filter((item) => item.completed === true);
+    this.renderTodos(done_tasks);
+    console.log(this.todos);
+  };
+  uncompletedTasks = () => {
+    let data = JSON.parse(localStorage.getItem("stored_todos"));
+    const done_tasks = data.filter((item) => item.completed === false);
+    this.renderTodos(done_tasks);
+  };
+  delete = (e) => {
+    //const remTasks = data.filter(item.id != id)
+    console.log(e.path[2].id);
+  };
 
   //close Form
-  close_open_Form=()=> {
+  close_open_Form = () => {
     let form = document.querySelector(".form");
 
     if (form.style.display === "block") {
@@ -139,24 +131,38 @@ delete =()=>{
     } else {
       form.style.display = "block";
     }
-  }
+  };
 
-  addingEventListeners=()=> {
+  addingEventListeners = () => {
     let createbtn = document.querySelector(".create");
     let cancel_form = document.querySelector(".cancel");
     let submit_btn = document.querySelector(".submit");
-    let uncompleted_btn = document.querySelector(".uncompleted")
-    let productivity_btn = document.querySelector("productivity")
-    
+    let uncompleted_btn = document.querySelector(".uncompleted");
+    let productivity_btn = document.querySelector("productivity");
+
     createbtn.addEventListener("click", this.close_open_Form);
     cancel_form.addEventListener("click", this.close_open_Form);
     submit_btn.addEventListener("click", this.create);
-    uncompleted_btn.addEventListener("click", this.uncompletedTasks)
-  }
+    uncompleted_btn.addEventListener("click", this.uncompletedTasks);
+
+    let delete_btns = document.querySelectorAll(".delete");
+    delete_btns.forEach((btn) =>
+      btn.addEventListener("click", (e) => {
+        //alert('clicked')
+        let data = JSON.parse(localStorage.getItem("stored_todos"));
+        let id = btn.id;
+        let filtered_items = data.filter((t) => t.id != id);
+
+        console.log(filtered_items);
+        localStorage.setItem("stored_todos", JSON.stringify(filtered_items));
+        this.renderTodos(filtered_items);
+      })
+    );
+  };
 }
 
 const app = new MyApp();
 app.initializeApp();
 
-let completed_btn = document.querySelector(".completed")
-completed_btn.addEventListener("click", app.completedTasks)
+let completed_btn = document.querySelector(".completed");
+completed_btn.addEventListener("click", app.completedTasks);
