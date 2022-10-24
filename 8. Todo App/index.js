@@ -17,7 +17,7 @@ class MyApp {
 
   fetchTodos = async () => {
     try {
-      const result = await fetch("https://jsonplaceholder.typicode.com/todos");
+      const result = await fetch("https://jsonplaceholder.typicode.com/todos? limit=10");
       const res = await result.json();
 
       this.todos = res;
@@ -139,7 +139,9 @@ class MyApp {
   }
   //close Form
   close_open_Form = () => {
+    
     let form = document.querySelector(".form");
+    console.log(form.style.display);
 
     if (form.style.display === "block") {
       form.style.display = "none";

@@ -27,34 +27,31 @@ body {
 .task_wrapper {
   display: grid;
   grid-template-columns: 20% 80%;
-  justify-content: space-between;
-  /* position: relative; */
 }
 .nav {
   background-color: rgb(210, 224, 224);
   box-shadow: rgba(100, 100, 111, 0.5) 0px 7px 29px 0px;
+  border-bottom-left-radius: 5px;
+  width: 160px;
+}
+.nav .inner {
   display: flex;
   flex-direction: column;
-  border-bottom-left-radius: 5px;
   position: sticky;
-  top: 0px;
-  /* left: 0; */
-
+  top: 0;
 }
-.nav .profile{
+.nav .profile {
   padding: 20px;
 }
-.nav .profile img{
+.nav .profile img {
   width: 50px;
   height: 50px;
   border-radius: 100px;
 }
 
-.menu{
+.menu {
   margin-top: 80px;
   background: rgba(177, 187, 187, 0.4);
-
-  height: ;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -62,23 +59,28 @@ body {
   align-items: flex-start;
   cursor: pointer;
 }
-.menu div{
+.menu div {
   display: flex;
-  justify-content: center;
   align-items: center;
   cursor: pointer;
   margin: 15px 0;
-  
+  width: 100%;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .exit {
-  margin-top: 50px;
+ padding: 10px;
   display: flex;
-  
+  gap: 10px;
   align-items: center;
   cursor: pointer;
 }
-
+.task_container_Form {
+  width: fit-content;
+  margin-left: 60px;
+  position: relative;
+}
 
 .task_container {
   margin-top: 20px;
@@ -104,30 +106,28 @@ body {
 #true .input {
   opacity: 0.2;
 }
-.task_container_Form {
-  position: relative;
-  width: fit-content;
-}
+
 #true .title {
   color: rgb(138, 6, 43);
 }
 
 .form {
-  position: absolute;
-  top: 2%;
+  position: fixed;
+  top: 20%;
   right: 0;
-  left: 50%;
+  left: 60%;
   transform: translate(-50%, -50%);
   background-color: rgb(9, 2, 27);
-  padding: 10px;
+  padding: 18px;
   display: none;
-  border-radius: 10px;
+  border-radius: ;
+  z-index: 100;
 }
 label {
   color: white;
 }
 .title_input {
-  padding: 8px;
+  padding: 10px;
   outline: none;
   font-size: 1.2rem;
   width: 100%;
