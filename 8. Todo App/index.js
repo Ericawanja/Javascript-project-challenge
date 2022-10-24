@@ -2,14 +2,16 @@ const taskContainer = document.querySelector(".task_container");
 
 class MyApp {
   todos = [];
+  filteredTodos = [];
 
   async initializeApp() {
     let stored_data = JSON.parse(localStorage.getItem("stored_todos"));
     if (stored_data && stored_data != undefined) {
       this.todos = stored_data;
+      this.filteredTodos = stored_data;
       this.renderTodos(stored_data);
     } else {
-      await this.fetchTodos();
+       await this.fetchTodos();
     }
   }
 
@@ -19,6 +21,7 @@ class MyApp {
       const res = await result.json();
 
       this.todos = res;
+      this.filteredTodos = res;
 
       localStorage.setItem("stored_todos", JSON.stringify(res));
 
@@ -115,19 +118,25 @@ class MyApp {
   completedTasks = () => {
     let data = JSON.parse(localStorage.getItem("stored_todos"));
     const done_tasks = data.filter((item) => item.completed === true);
+    this.filteredTodos = done_tasks;
     
     this.renderTodos(done_tasks);
     
-
-
-  
+    
+    
+    
   };
   uncompletedTasks = () => {
     let data = JSON.parse(localStorage.getItem("stored_todos"));
-    const done_tasks = data.filter((item) => item.completed === false);
-    this.renderTodos(done_tasks);
+    const uncompleted_tasks = data.filter((item) => item.completed === false);
+    this.filteredTodos = uncompleted_tasks;
+    this.renderTodos(uncompleted_tasks);
   };
 
+
+  all_generate=()=>{
+    this.renderTodos(this.todos)
+  }
   //close Form
   close_open_Form = () => {
     let form = document.querySelector(".form");
@@ -145,20 +154,25 @@ class MyApp {
     let submit_btn = document.querySelector(".submit");
     let uncompleted_btn = document.querySelector(".uncompleted");
     let productivity_btn = document.querySelector("productivity");
+    let all_tasks = document.querySelector(".all")
 
     createbtn.addEventListener("click", this.close_open_Form);
     cancel_form.addEventListener("click", this.close_open_Form);
     submit_btn.addEventListener("click", this.create);
     uncompleted_btn.addEventListener("click", this.uncompletedTasks);
+    all_tasks.addEventListener('click', this.all_generate)
 
     let delete_btns = document.querySelectorAll(".delete");
     delete_btns.forEach((btn) =>
       btn.addEventListener("click", (e) => {
-        let data = JSON.parse(localStorage.getItem("stored_todos"));
         let id = btn.id;
-        let filtered_items = data.filter((t) => t.id != id);
+        let filtered_items = this.filteredTodos.filter((t) => t.id != id);
+        this.filteredTodos = filtered_items;
 
-        localStorage.setItem("stored_todos", JSON.stringify(filtered_items));
+        const todosAfterDelete = this.todos.filter((t) => t.id != id);
+        this.todos = todosAfterDelete;
+
+        localStorage.setItem("stored_todos", JSON.stringify(todosAfterDelete));
         this.renderTodos(filtered_items);
       })
     );

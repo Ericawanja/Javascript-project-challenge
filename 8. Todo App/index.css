@@ -26,8 +26,9 @@ body {
 }
 .task_wrapper {
   display: grid;
-  grid-template-columns: 15% 85%;
+  grid-template-columns: 20% 80%;
   justify-content: space-between;
+  /* position: relative; */
 }
 .nav {
   background-color: rgb(210, 224, 224);
@@ -35,6 +36,9 @@ body {
   display: flex;
   flex-direction: column;
   border-bottom-left-radius: 5px;
+  position: sticky;
+  top: 0px;
+  /* left: 0; */
 
 }
 .nav .profile{
@@ -49,24 +53,35 @@ body {
 .menu{
   margin-top: 80px;
   background: rgba(177, 187, 187, 0.4);
- 
-  height: 200px;
+
+  height: ;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-start;
+  cursor: pointer;
 }
-
-.exit{
-  margin-top: 50px;
+.menu div{
   display: flex;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 15px 0;
+  
 }
+
+.exit {
+  margin-top: 50px;
+  display: flex;
+  
+  align-items: center;
+  cursor: pointer;
+}
+
 
 .task_container {
   margin-top: 20px;
- 
 }
 .task {
   margin: 10px 0;
@@ -83,20 +98,21 @@ body {
   margin: 0 auto;
   accent-color: rgb(247, 244, 248);
 }
-.task .title{
-    text-transform: capitalize;
+.task .title {
+  text-transform: capitalize;
 }
-#true .input{
+#true .input {
   opacity: 0.2;
 }
-.task_container_Form{
+.task_container_Form {
   position: relative;
+  width: fit-content;
+}
+#true .title {
+  color: rgb(138, 6, 43);
+}
 
-}
-#true .title{
-color: rgb(138, 6, 43);  
-}
-.form{
+.form {
   position: absolute;
   top: 2%;
   right: 0;
@@ -104,52 +120,47 @@ color: rgb(138, 6, 43);
   transform: translate(-50%, -50%);
   background-color: rgb(9, 2, 27);
   padding: 10px;
-  display:none ;
+  display: none;
   border-radius: 10px;
-  
-  
 }
-label{
+label {
   color: white;
 }
-.title_input{
+.title_input {
   padding: 8px;
   outline: none;
   font-size: 1.2rem;
   width: 100%;
 }
 
-.btns{
+.btns {
   display: flex;
   gap: 10px;
   margin: 0 20px;
 }
-.cancel, .submit{
+.cancel,
+.submit {
   padding: 7px;
 }
-@media  screen and (max-width:950px) {
-  .container{
+@media screen and (max-width: 950px) {
+  .container {
     width: 80%;
-  
   }
 }
-@media  screen and (max-width:650px) {
-  .container{
+@media screen and (max-width: 650px) {
+  .container {
     width: 95%;
-
   }
-  
-  .nav .profile{
+
+  .nav .profile {
     padding: 20px 5px;
   }
 }
-@media  screen and (max-width:450px) {
-  .container{
+@media screen and (max-width: 450px) {
+  .container {
     width: 99%;
-  
   }
-  .hero_image img{
+  .hero_image img {
     height: 150px;
   }
-  
 }
