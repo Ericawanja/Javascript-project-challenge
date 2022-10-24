@@ -5,7 +5,8 @@ class MyApp {
 
   async initializeApp() {
     let stored_data = JSON.parse(localStorage.getItem("stored_todos"));
-    if (stored_data) {
+    if (stored_data && stored_data != undefined) {
+      this.todos = stored_data
       this.renderTodos(stored_data);
     } else {
       await this.fetchTodos();
@@ -66,7 +67,7 @@ class MyApp {
     this.addingEventListeners();
   };
 
-  addTodo = async (data) => {
+  /*addTodo = async (data) => {
     const result = await fetch("https://jsonplaceholder.typicode.com/todos", {
       method: "POST",
       body: JSON.stringify(data),
@@ -77,11 +78,11 @@ class MyApp {
 
     const todo = await result.json();
 
-    this.todos.unshift(todo);
-    localStorage.setItem("stored_todos", JSON.stringify(this.todos.unshift));
+    this.todos.unshift(data);
+    localStorage.setItem("stored_todos", JSON.stringify(this.todos));
     this.renderTodos(this.todos);
     this.close_open_Form();
-  };
+  };*/
 
   checkCompleted() {
     const checkboxes = document.getElementsByClassName("checkbox");
@@ -103,7 +104,12 @@ class MyApp {
       completed: "false",
     };
 
-    this.addTodo(created_todo);
+    this.todos.unshift(created_todo);
+    localStorage.setItem("stored_todos", JSON.stringify(this.todos));
+    this.renderTodos(this.todos);
+    this.close_open_Form();
+    //this.addTodo(created_todo);
+    
   };
 
   completedTasks = () => {
