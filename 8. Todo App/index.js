@@ -6,7 +6,7 @@ class MyApp {
   async initializeApp() {
     let stored_data = JSON.parse(localStorage.getItem("stored_todos"));
     if (stored_data && stored_data != undefined) {
-      this.todos = stored_data
+      this.todos = stored_data;
       this.renderTodos(stored_data);
     } else {
       await this.fetchTodos();
@@ -84,9 +84,10 @@ class MyApp {
     this.close_open_Form();
   };*/
 
+  //completed from api
   checkCompleted() {
     const checkboxes = document.getElementsByClassName("checkbox");
-    console.log();
+
     for (let i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].getAttribute("data-completed-status") != "false") {
         checkboxes[i].checked = true;
@@ -109,23 +110,22 @@ class MyApp {
     this.renderTodos(this.todos);
     this.close_open_Form();
     //this.addTodo(created_todo);
-    
   };
 
   completedTasks = () => {
     let data = JSON.parse(localStorage.getItem("stored_todos"));
     const done_tasks = data.filter((item) => item.completed === true);
+    
     this.renderTodos(done_tasks);
-    console.log(this.todos);
+    
+
+
+  
   };
   uncompletedTasks = () => {
     let data = JSON.parse(localStorage.getItem("stored_todos"));
     const done_tasks = data.filter((item) => item.completed === false);
     this.renderTodos(done_tasks);
-  };
-  delete = (e) => {
-    //const remTasks = data.filter(item.id != id)
-    console.log(e.path[2].id);
   };
 
   //close Form
@@ -154,16 +154,34 @@ class MyApp {
     let delete_btns = document.querySelectorAll(".delete");
     delete_btns.forEach((btn) =>
       btn.addEventListener("click", (e) => {
-        //alert('clicked')
         let data = JSON.parse(localStorage.getItem("stored_todos"));
         let id = btn.id;
         let filtered_items = data.filter((t) => t.id != id);
 
-        console.log(filtered_items);
         localStorage.setItem("stored_todos", JSON.stringify(filtered_items));
         this.renderTodos(filtered_items);
       })
     );
+
+    //checkbox events
+
+    let checkbox_btn = document.querySelectorAll(".checkbox");
+    checkbox_btn.forEach((check_btn) => {
+      check_btn.addEventListener("click", () => {
+        let id = check_btn.id;
+        for (let i = 0; i < this.todos.length; i++) {
+          if (this.todos[i].id === +id) {
+            if (this.todos[i].completed === true) {
+              this.todos[i].completed = false;
+            } else {
+              this.todos[i].completed = true;
+            }
+            localStorage.setItem("stored_todos", JSON.stringify(this.todos));
+            this.renderTodos(this.todos);
+          }
+        }
+      });
+    });
   };
 }
 
