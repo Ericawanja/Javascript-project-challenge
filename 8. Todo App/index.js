@@ -17,7 +17,7 @@ class MyApp {
 
   fetchTodos = async () => {
     try {
-      const result = await fetch("https://jsonplaceholder.typicode.com/todos? limit=10");
+      const result = await fetch("https://jsonplaceholder.typicode.com/todos?_ limit=10");
       const res = await result.json();
 
       this.todos = res;
@@ -105,7 +105,7 @@ class MyApp {
       id,
       user: 21,
       title: title_input,
-      completed: "false",
+      completed: false,
     };
 
     this.todos.unshift(created_todo);
@@ -116,6 +116,7 @@ class MyApp {
   };
 
   completedTasks = () => {
+    document.querySelector('.list_Title').innerText ='Done Tasks'
     let data = JSON.parse(localStorage.getItem("stored_todos"));
     const done_tasks = data.filter((item) => item.completed === true);
     this.filteredTodos = done_tasks;
@@ -127,6 +128,7 @@ class MyApp {
     
   };
   uncompletedTasks = () => {
+    document.querySelector('.list_Title').innerText ='Pending Tasks'
     let data = JSON.parse(localStorage.getItem("stored_todos"));
     const uncompleted_tasks = data.filter((item) => item.completed === false);
     this.filteredTodos = uncompleted_tasks;
@@ -135,13 +137,15 @@ class MyApp {
 
 
   all_generate=()=>{
+    document.querySelector('.list_Title').innerText ='All Tasks'
     this.renderTodos(this.todos)
   }
   //close Form
   close_open_Form = () => {
     
     let form = document.querySelector(".form");
-    console.log(form.style.display);
+
+    
 
     if (form.style.display === "block") {
       form.style.display = "none";
@@ -155,7 +159,6 @@ class MyApp {
     let cancel_form = document.querySelector(".cancel");
     let submit_btn = document.querySelector(".submit");
     let uncompleted_btn = document.querySelector(".uncompleted");
-    let productivity_btn = document.querySelector("productivity");
     let all_tasks = document.querySelector(".all")
 
     createbtn.addEventListener("click", this.close_open_Form);
@@ -193,7 +196,15 @@ class MyApp {
               this.todos[i].completed = true;
             }
             localStorage.setItem("stored_todos", JSON.stringify(this.todos));
-            this.renderTodos(this.todos);
+            const list_type =document.querySelector('.list_Title').innerText
+            console.log(list_type)
+            if(list_type === 'Pending Tasks'){
+              this.uncompletedTasks()
+              
+            }else if(list_type === 'Done Tasks'){
+              this.completedTasks()
+            }
+            //this.renderTodos(this.todos);
           }
         }
       });
