@@ -75,6 +75,7 @@ body {
   gap: 10px;
   align-items: center;
   cursor: pointer;
+  display: none;
 }
 .task_container_Form {
   width: fit-content;
@@ -115,13 +116,14 @@ body {
   position: fixed;
   top: 20%;
   right: 0;
-  left: 60%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background-color: rgb(9, 2, 27);
   padding: 18px;
   display: none;
   border-radius: ;
   z-index: 100;
+  width: 200px;
 }
 label {
   color: white;
